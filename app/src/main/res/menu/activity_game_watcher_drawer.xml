@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/Location"
+            android:icon="@drawable/ic_location_marker"
+            android:title="Locate My Games" />
+        <item
+            android:id="@+id/Camera"
+            android:icon="@drawable/ic_pics"
+            android:title="My Pictures" />
+        <item
+            android:id="@+id/Stats"
+            android:icon="@drawable/ic_stats"
+            android:title="My Statistics" />
+        <item
+            android:id="@+id/Search"
+            android:icon="@drawable/ic_search_loop"
+            android:title="Search" />
+    </group>
+
+</menu>
