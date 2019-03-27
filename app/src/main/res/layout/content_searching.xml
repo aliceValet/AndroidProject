@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Searching"
+    tools:showIn="@layout/activity_searching"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_search_loop"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"/>
+    </LinearLayout>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="3"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:id="@+id/Surname"
+            android:layout_width="wrap_content"
+            android:layout_row="0"
+            android:layout_rowWeight="1"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:text="Nom"
+            android:textSize="25dp" />
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="wrap_content"
+            android:layout_row="0"
+            android:layout_rowWeight="1"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:text="Prenom"
+            android:textSize="25dp" />
+        <TextView
+            android:id="@+id/Wins"
+            android:layout_width="wrap_content"
+            android:layout_row="0"
+            android:layout_rowWeight="1"
+            android:layout_column="2"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:text="Wins"
+            android:textSize="25dp" />
+        <TextView
+            android:id="@+id/DataSurname"
+            android:layout_width="wrap_content"
+            android:layout_row="1"
+            android:layout_rowWeight="10"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:hint="Djokovic"
+            android:textSize="20dp" />
+        <TextView
+            android:id="@+id/DataName"
+            android:layout_width="wrap_content"
+            android:layout_row="1"
+            android:layout_rowWeight="10"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:hint="Novak"
+            android:textSize="20dp" />
+        <TextView
+            android:id="@+id/DataWins"
+            android:layout_width="wrap_content"
+            android:layout_row="1"
+            android:layout_rowWeight="10"
+            android:layout_column="2"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:hint="25"
+            android:textSize="20dp" />
+
+    </GridLayout>
+
+</LinearLayout>

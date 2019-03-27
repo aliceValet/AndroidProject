@@ -52,6 +52,9 @@ public class Localisation extends AppCompatActivity implements LocationListener,
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         latitudeField = (TextView) findViewById(R.id.Latitude);
         longitudeField = (TextView) findViewById(R.id.Longitude);
 
@@ -124,6 +127,7 @@ public class Localisation extends AppCompatActivity implements LocationListener,
             latitudeField.setText("Location not available");
             longitudeField.setText("Location not available");
         }
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
