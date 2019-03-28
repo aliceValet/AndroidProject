@@ -92,7 +92,10 @@ public class GameWatcher extends AppCompatActivity
 
         }
         else if(id==R.id.Stats){
-
+            Intent intent = new Intent( this, Stat.class);
+            if (intent != null) {
+                startActivity(intent);
+            }
         }
         else if(id==R.id.Search){
             getSupportFragmentManager().beginTransaction().replace(R.id.ContentToReplace, fragSearch).commit();
