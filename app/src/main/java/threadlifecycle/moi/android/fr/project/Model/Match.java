@@ -53,10 +53,9 @@ public class Match {
     }
 
     @Ignore
-    public Match(int id, String winnerName, String loserName, int latitude, int longitude,
+    public Match(String winnerName, String loserName, int latitude, int longitude,
                  String typeMatch, String dureeMatch, String classement, int letWinner,
                  int letLoser, int fauteWinner, int fauteLoser) {
-        this.id = id;
         this.winnerName = winnerName;
         this.loserName = loserName;
         this.latitude = latitude;

@@ -84,7 +84,10 @@ public class GameWatcher extends AppCompatActivity
 
         }
         else if(id==R.id.Stats){
-
+            Intent intent = new Intent( this, Stat.class);
+            if (intent != null) {
+                startActivity(intent);
+            }
         }
         else if(id==R.id.Search){
             Intent intent= new Intent(this,Searching.class);
