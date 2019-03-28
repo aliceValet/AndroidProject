@@ -7,35 +7,40 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Objects;
+
+
 import static java.util.Objects.requireNonNull;
 
-public class Localisation extends AppCompatActivity implements LocationListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMyLocationButtonClickListener,
+public class Localisation extends Fragment implements LocationListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMyLocationButtonClickListener,
         GoogleMap.OnMyLocationClickListener {
-
     TextView latitudeField;
     TextView longitudeField;
     LocationManager locationManager;
     String provider;
     Location location;
+    MapView test;
 
     Marker userLocation;
 
@@ -46,41 +51,64 @@ public class Localisation extends AppCompatActivity implements LocationListener,
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_localisation);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        latitudeField = (TextView) Objects.requireNonNull(getActivity()).findViewById(R.id.Latitude);
+        longitudeField = (TextView) getActivity().findViewById(R.id.Longitude);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-        latitudeField = (TextView) findViewById(R.id.Latitude);
-        longitudeField = (TextView) findViewById(R.id.Longitude);
 
         // Get the location manager 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) Objects.requireNonNull(getActivity()).getSystemService(Context.LOCATION_SERVICE);
         // Define the criteria how to select the location provider -> use  default
         Criteria criteria = new Criteria();
         provider = locationManager.getBestProvider(criteria, false);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             //TODO: Consider calling 
             // ActivityCompat#requestPermissions 
             // here to request the missing permissions, and then overriding 
             // public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) 
             // to handle the case where the user grants the permission. See the documentation 
             // for ActivityCompat#requestPermissions for more details. 
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_ACCESS_FINE_LOCATION);
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_ACCESS_COARSE_LOCATION);
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_ACCESS_FINE_LOCATION);
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_ACCESS_COARSE_LOCATION);
         }
         location = locationManager.getLastKnownLocation(provider);
 
         //Je récupère le fragment contenant ma map
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragmaps);
+        //SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragmaps);
+        //SupportMapFragment mapFragment2 = (SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.fragmaps);
+        //on s'assure que la map est non null pour pouvoir la récupérer. la map est une tache asynchrone pour pouvoir l'actualiser sans freeze l'activite.
+        //requireNonNull(mapFragment).getMapAsync((OnMapReadyCallback) getActivity());
+
+    }
+
+
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_localisation, container, false);
+
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+       /*test = Objects.requireNonNull(getActivity()).findViewById(R.id.fragmaps);
+       test.getMapAsync(this);*/
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragmaps);
+        //SupportMapFragment mapFragment2 = (SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.fragmaps);
         //on s'assure que la map est non null pour pouvoir la récupérer. la map est une tache asynchrone pour pouvoir l'actualiser sans freeze l'activite.
         requireNonNull(mapFragment).getMapAsync(this);
+
+        latitudeField = (TextView) Objects.requireNonNull(getActivity()).findViewById(R.id.Latitude);
+        longitudeField = (TextView) getActivity().findViewById(R.id.Longitude);
     }
+
+
 
     @Override
     public void onLocationChanged(Location location) {
@@ -128,7 +156,7 @@ public class Localisation extends AppCompatActivity implements LocationListener,
             longitudeField.setText("Location not available");
         }
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -136,8 +164,8 @@ public class Localisation extends AppCompatActivity implements LocationListener,
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_ACCESS_FINE_LOCATION);
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_ACCESS_COARSE_LOCATION);
+            ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_ACCESS_FINE_LOCATION);
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_ACCESS_COARSE_LOCATION);
         }
         gogole.setMyLocationEnabled(true);
         gogole.setOnMyLocationButtonClickListener(this);

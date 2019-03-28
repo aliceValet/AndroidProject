@@ -29,27 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Localisation"
-            android:label="@string/title_activity_localisation"
-            android:parentActivityName=".GameWatcher"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".GameWatcher" />
-        </activity>
-        <activity
-            android:name=".Searching"
-            android:label="@string/title_activity_searching"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".GameWatcher"
-            >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".GameWatcher" />
-
-
-        </activity>
     </application>
 
 </manifest>
