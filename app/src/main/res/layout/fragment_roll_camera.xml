@@ -5,11 +5,64 @@
     android:layout_height="match_parent"
     tools:context=".RollCamera">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/Alert"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello camera rolling here" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/img" />
+
+        </LinearLayout>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Texte test"
+            android:id="@+id/edittest"/>
+    </LinearLayout>
+
+        <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnsave"
+        android:hint="Save"
+        android:onClick="save"
+        android:paddingVertical="30dp"/>
+
+        <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnload"
+        android:hint="Load"
+        android:onClick="load"
+        android:paddingVertical="30dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnimageone"
+            android:hint="Image 1"
+            android:paddingVertical="30dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnimagetwo"
+            android:hint="Image 2"
+            android:paddingVertical="30dp"/>
+
+    </LinearLayout>
 
 </FrameLayout>

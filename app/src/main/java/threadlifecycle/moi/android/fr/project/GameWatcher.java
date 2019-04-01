@@ -1,13 +1,8 @@
 package threadlifecycle.moi.android.fr.project;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,12 +14,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class GameWatcher extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     RollCamera fragCam = new RollCamera();
     Searching fragSearch = new Searching();
     Localisation fragLoc = new Localisation();
+
+    private static final String FILE_NAME_ONE = "test.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,4 +110,62 @@ public class GameWatcher extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    public void save(View view) {
+        String text = fragCam.getTestText();
+        FileOutputStream fos = null;
+
+        try {
+            fos = openFileOutput(FILE_NAME_ONE, Context.MODE_PRIVATE);
+            fos.write(text.getBytes());
+
+            fragCam.setTestToClear();
+            Toast.makeText(this,"Saved to " + getFilesDir() + "/" + FILE_NAME_ONE, Toast.LENGTH_LONG ).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void load(View view) {
+        FileInputStream fis = null;
+
+        try {
+            fis = openFileInput(FILE_NAME_ONE);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
+
+            while ((text = br.readLine()) != null) {
+                sb.append(text).append("\n");
+            }
+            fragCam.setTestText(sb.toString());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if(fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }
