@@ -27,6 +27,7 @@ public class GameWatcher extends AppCompatActivity
     RollCamera fragCam = new RollCamera();
     Searching fragSearch = new Searching();
     Localisation fragLoc = new Localisation();
+    Welcome accueil = new Welcome();
 
     private static final String FILE_NAME_ONE = "test.txt";
 
@@ -45,6 +46,7 @@ public class GameWatcher extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        getSupportFragmentManager().beginTransaction().replace(R.id.ContentToReplace, accueil).commit();
     }
 
     @Override

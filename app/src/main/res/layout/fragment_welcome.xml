@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Welcome">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="153dp"
+            android:src="@drawable/ic_action_name"
+            android:layout_marginTop="90dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome to your Game Watcher App"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:textColor="@color/colorPrimary"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Don't miss a thing about your favorite sport"
+            android:textAlignment="center"
+            android:textSize="15dp"
+            android:layout_marginTop="20dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_volant" />
+    </LinearLayout>
+
+
+
+</FrameLayout>
