@@ -11,10 +11,13 @@ import java.util.List;
 import io.reactivex.Flowable;
 import threadlifecycle.moi.android.fr.project.Model.Match;
 
+//Data access object. Interface permettant d'acceder a l'objet match cree dans Match.
+//Definit interactions avec la database
 @Dao
 public interface MatchDAO {
+    //tag pour generer une requete SQL
     @Query("SELECT * FROM matches WHERE id=:matchId")
-    Flowable<Match> getMatchById(int matchId);
+    Flowable<Match> getMatchById(int matchId); //retourne un objet de type Flowable (liste de classes)
 
     @Query("SELECT * FROM matches")
     Flowable<List<Match>> getAllMatches();

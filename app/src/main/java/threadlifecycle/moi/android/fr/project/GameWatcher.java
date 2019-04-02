@@ -118,20 +118,29 @@ public class GameWatcher extends AppCompatActivity
 
         try {
             fos = openFileOutput(FILE_NAME_ONE, Context.MODE_PRIVATE);
+            //getBytes permet d'ecrire les donnees du text dans le file
             fos.write(text.getBytes());
 
             fragCam.setTestToClear();
+            //file pas accessible directement mais seulement au travers de l'app pour des raisons de securite.
             Toast.makeText(this,"Saved to " + getFilesDir() + "/" + FILE_NAME_ONE, Toast.LENGTH_LONG ).show();
+            //n'arrive pas a ouvrir le file
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+
+            //n'arrive pas a ecrire dedans
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //whatever happens
         finally {
+            //si le fichier existe, ferme le bordel
             if (fos != null) {
                 try {
                     fos.close();
                 } catch (IOException e) {
+                    //sinon renvoie une erreur
                     e.printStackTrace();
                 }
             }
@@ -143,14 +152,19 @@ public class GameWatcher extends AppCompatActivity
 
         try {
             fis = openFileInput(FILE_NAME_ONE);
+            //recupere les donnees du file. It reads bytes and decodes them into characters using a specified charset
             InputStreamReader isr = new InputStreamReader(fis);
+            //classe permettant de lire et traiter toutes les donnees du file
             BufferedReader br = new BufferedReader(isr);
+            //liste de strings (en fait classe à part entiere qui enfile les strings comme des perles)
             StringBuilder sb = new StringBuilder();
             String text;
-
+            //tant qu'il y a des lignes a lire
             while ((text = br.readLine()) != null) {
+                //text = ligne recuperee dans br
                 sb.append(text).append("\n");
             }
+            //revoir la note ecrite precedemment en la loadant
             fragCam.setTestText(sb.toString());
         } catch (FileNotFoundException e) {
             e.printStackTrace();

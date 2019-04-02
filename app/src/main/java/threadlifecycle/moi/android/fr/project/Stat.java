@@ -47,9 +47,9 @@ public class Stat extends AppCompatActivity {
         setContentView(R.layout.activity_stat);
 
         //Actionbar
-        setSupportActionBar((Toolbar) findViewById(R.id.home_toolbar));
+        /*setSupportActionBar((Toolbar) findViewById(R.id.home_toolbar));
         ActionBar actionBar =getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);*/
 
         compositeDisposable = new CompositeDisposable();
 
@@ -79,7 +79,7 @@ public class Stat extends AppCompatActivity {
                         e.onComplete();
                     }
                 })
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .observeOn(AndroidSchedulers.mainThread())//mainthread is when user interactions take place
                         .subscribeOn(Schedulers.io())
                         .subscribe(new Consumer() {
                             @Override

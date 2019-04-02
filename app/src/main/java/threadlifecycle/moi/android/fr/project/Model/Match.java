@@ -7,13 +7,14 @@ import android.arch.persistence.room.PrimaryKey;
 
 import io.reactivex.annotations.NonNull;
 
+//tag indiquant que cette classe est une table. Dit à la database a quoi devra ressembler la table
 @Entity(tableName = "matches")
 public class Match {
-
+    //tag pour que id ne soit pas null
     @NonNull
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    private int id;
+    @PrimaryKey(autoGenerate = true) //id genere automatiquement pour chaque ligne ajoutee a la table
+    @ColumnInfo(name = "id")//permet de retrouver user via l'id
+    private int id; // id prendra la valeur id de la colonne.
 
     @ColumnInfo(name = "winnerName")
     private String winnerName;

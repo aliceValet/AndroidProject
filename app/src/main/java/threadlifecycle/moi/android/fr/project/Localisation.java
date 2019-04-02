@@ -236,13 +236,13 @@ public class Localisation extends Fragment implements LocationListener, OnMapRea
         gogole.setOnMyLocationButtonClickListener(this);
         gogole.setOnMyLocationClickListener(this);
 
-        gogole.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+        /*gogole.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
                 gogole.clear();
                 gogole.addMarker(new MarkerOptions().position(latLng));
             }
-        });
+        });*/
 
     }
 

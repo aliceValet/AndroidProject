@@ -6,6 +6,7 @@ import io.reactivex.Flowable;
 import threadlifecycle.moi.android.fr.project.Local.MatchDataSource;
 import threadlifecycle.moi.android.fr.project.Model.Match;
 
+//manipule les donnees dnas la base de donnees
 public class MatchRepository implements IMatchDataSource{
 
     private IMatchDataSource mLocalDataSource;
