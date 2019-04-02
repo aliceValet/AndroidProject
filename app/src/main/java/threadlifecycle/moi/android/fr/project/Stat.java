@@ -102,5 +102,26 @@ public class Stat extends AppCompatActivity {
     }
 
     private void loadData() {
+        Disposable disposable = matchRepository.getAllMatches()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<List<Match>>() {
+                    @Override
+                    public void accept(List<Match> matches) throws Exception {
+                        onGetAllMatchSuccess(matches);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Toast.makeText(Stat.this, ""+throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        compositeDisposable.add(disposable);
+    }
+
+    private void onGetAllMatchSuccess(List<Match> matches) {
+        matchList.clear();
+        matchList.addAll(matches);
+        adapter.notifyDataSetChanged();
     }
 }
