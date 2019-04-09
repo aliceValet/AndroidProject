@@ -28,6 +28,7 @@ public class GameWatcher extends AppCompatActivity
     Searching fragSearch = new Searching();
     Localisation fragLoc = new Localisation();
     Welcome accueil = new Welcome();
+    Notes notes = new Notes();
 
     private static final String FILE_NAME_ONE = "test.txt";
 
@@ -107,15 +108,18 @@ public class GameWatcher extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.ContentToReplace, fragSearch).commit();
 
         }
+        else if(id==R.id.Notes) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.ContentToReplace, notes).commit();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-
+    /*
     public void save(View view) {
-        String text = fragCam.getTestText();
+        String text = notes.getTestText();
         FileOutputStream fos = null;
 
         try {
@@ -123,7 +127,7 @@ public class GameWatcher extends AppCompatActivity
             //getBytes permet d'ecrire les donnees du text dans le file
             fos.write(text.getBytes());
 
-            fragCam.setTestToClear();
+            notes.setTestToClear();
             //file pas accessible directement mais seulement au travers de l'app pour des raisons de securite.
             Toast.makeText(this,"Saved to " + getFilesDir() + "/" + FILE_NAME_ONE, Toast.LENGTH_LONG ).show();
             //n'arrive pas a ouvrir le file
@@ -167,7 +171,7 @@ public class GameWatcher extends AppCompatActivity
                 sb.append(text).append("\n");
             }
             //revoir la note ecrite precedemment en la loadant
-            fragCam.setTestText(sb.toString());
+            notes.setTestText(sb.toString());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -183,5 +187,5 @@ public class GameWatcher extends AppCompatActivity
             }
         }
     }
-
+    */
 }

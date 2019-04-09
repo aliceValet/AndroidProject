@@ -20,6 +20,10 @@
             android:id="@+id/Search"
             android:icon="@drawable/ic_search_loop"
             android:title="Search" />
+        <item
+            android:id="@+id/Notes"
+            android:title="Notes"
+            android:icon="@drawable/ic_add_black_24dp"/>
     </group>
 
 </menu>
