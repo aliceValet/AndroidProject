@@ -95,6 +95,7 @@ public class GameWatcher extends AppCompatActivity
         }
         else if(id==R.id.Camera){
 
+            //new RollCamera().OpenCamera();
             getSupportFragmentManager().beginTransaction().replace(R.id.ContentToReplace, fragCam).commit();
 
         }
@@ -117,9 +118,9 @@ public class GameWatcher extends AppCompatActivity
         return true;
     }
 
-    /*
-    public void save(View view) {
-        String text = notes.getTestText();
+
+    /*public void save(View view) {
+        String text = fragCam.getTestText();
         FileOutputStream fos = null;
 
         try {
@@ -186,6 +187,6 @@ public class GameWatcher extends AppCompatActivity
                 }
             }
         }
-    }
-    */
+    }*/
+
 }
