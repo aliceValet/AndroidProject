@@ -112,6 +112,12 @@ public class GameWatcher extends AppCompatActivity
         else if(id==R.id.Notes) {
             getSupportFragmentManager().beginTransaction().replace(R.id.ContentToReplace, notes).commit();
         }
+        else if(id==R.id.AjoutMatch){
+            Intent intent = new Intent(this, AddMatch.class);
+            if (intent != null){
+                startActivity(intent);
+            }
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

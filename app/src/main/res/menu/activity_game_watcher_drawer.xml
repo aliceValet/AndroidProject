@@ -22,7 +22,10 @@
             android:title="Search" />
         <item
             android:id="@+id/Notes"
-            android:title="Notes"
+            android:title="Notes" />
+        <item
+            android:id="@+id/AjoutMatch"
+            android:title="Ajout Match"
             android:icon="@drawable/ic_add_black_24dp"/>
     </group>
 

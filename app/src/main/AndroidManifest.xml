@@ -45,6 +45,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Stat" />
+        <activity android:name=".AddMatch"/>
 
     </application>
 
